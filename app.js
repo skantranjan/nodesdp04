@@ -7,7 +7,7 @@ const skuDetailsRoutes = require('./routes/skuDetails.routes');
 const jwtMiddleware = require('./middleware/middleware.jwt');
 const pool = require('./config/db.config');
 const fastifyCors = require('@fastify/cors');
-
+const skuAuditLogRoutes = require('./routes/skuAuditLog.routes');
 
 
 // Register SKU routes
@@ -18,6 +18,9 @@ fastify.register(cmRoutes);
 
 // Register SKU Details routes
 fastify.register(skuDetailsRoutes);
+
+// Register SKU Audit Log routes
+fastify.register(skuAuditLogRoutes);
 
 // Add JWT middleware globally
 //fastify.addHook('preHandler', jwtMiddleware);
