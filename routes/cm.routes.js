@@ -1,11 +1,9 @@
 const { getCMCodesController, getCMCodeByCodeController } = require('../controllers/controller.getcmcodes');
+const ssoMiddleware = require('../middleware/middleware.sso');
 
 async function cmRoutes(fastify, options) {
-  // Get all unique CM codes
-  fastify.get('/cm-codes', getCMCodesController);
-  
-  // Get specific CM code by code
-  fastify.get('/cm-codes/:cm_code', getCMCodeByCodeController);
+  fastify.get('/cm-codes', { preHandler: ssoMiddleware }, getCMCodesController);
+  fastify.get('/cm-codes/:cm_code', { preHandler: ssoMiddleware }, getCMCodeByCodeController);
 }
 
 module.exports = cmRoutes; 
